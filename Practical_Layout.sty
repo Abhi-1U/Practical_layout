@@ -1,0 +1,117 @@
+\usepackage[utf8]{inputenc}
+\usepackage{pgf}
+\usepackage{hyperref}
+\usepackage{pgfpages}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage[shortlabels]{enumitem}
+\usepackage{etoolbox}
+\usepackage{fontawesome}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{graphicx}
+\usepackage{minted}
+\usepackage{mdframed}
+\usepackage{dingbat}
+
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
+
+\setmainfont{Fira Sans}
+\usepackage{titlesec}
+\titleformat{\chapter}[display]
+  {\normalfont\bfseries}{}{0pt}{\Large}
+\fancyhf{}
+\newcommand{\changefont}{%
+    \fontsize{20}{20}\selectfont
+}
+\fancyhead[R,RO]{\changefont \textbf{Roll No : \RollNo}}
+\fancyhead[L,LO]{\changefont \textbf{T.Y.B.Sc.C.S}}
+\fancyhead[C,CO]{\changefont \textbf{\Semester}}
+\fancyfoot[R,CO]{\changefont \textbf{\Title}}
+\fancyfoot[R,RO]{\changefont \textbf{Pg.No: \thepage}}
+\BeforeBeginEnvironment{minted}{\begin{tcolorbox}}%
+\AfterEndEnvironment{minted}{\end{tcolorbox}}%
+\setcounter{secnumdepth}{0}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\setcounter{tocdepth}{0}
+\pgfpagesdeclarelayout{boxed}
+{
+  \edef\pgfpageoptionborder{0pt}
+}
+{
+  \pgfpagesphysicalpageoptions
+  {%
+    logical pages=1,%
+  }
+  \pgfpageslogicalpageoptions{1}
+  {
+    border code=\pgfsetlinewidth{2pt}\pgfstroke,%
+    border shrink=\pgfpageoptionborder,%
+    resized width=.95\pgfphysicalwidth,%
+    resized height=.95\pgfphysicalheight,%
+    center=\pgfpoint{.5\pgfphysicalwidth}{.5\pgfphysicalheight}%
+  }%
+}
+\pgfpagesuselayout{boxed}
+\addtolength{\topmargin}{0cm}
+
+
+
+
+
+
+
+\renewcommand\@maketitle{\newpage
+\thispagestyle{plain}
+\newgeometry{margin = 0in}
+%\vspace{-1in}
+\setlength{\fboxsep}{0pt}
+\hfill \colorbox{Black}{\makebox[3.22in][r]{\shortstack[r]{\vspace{2.75in}}}}%
+\offinterlineskip
+\vspace{-0.25pt}
+\offinterlineskip
+\setlength{\fboxsep}{10pt}
+\setlength{\fboxrule}{0pt}
+\colorbox{Black}{\makebox[8in][l]{\hfill \shortstack[r]{\fontsize{36}{36}\rmfamily\color{white} \@title\\%
+\fontsize{24}{24}\rmfamily\color{white} \cpiType}}}%
+\setlength{\fboxsep}{0pt}
+\vspace{-0.25pt}
+\offinterlineskip
+\hfill \colorbox{Black}{\hspace{.25in} \parbox{2.97in}{%
+\vfill \vspace{3.7in} \Large \color{white} \textbf{\@author \\ \\\faGithub\vspace{0.5cm} @Abhi-1U  \\ \\   \today \vspace{2.5in} }}}%
+\let\Title\@title
+\restoregeometry}
+
+\newenvironment{Code}[2]{
+    \begin{mdframed}[linecolor=black, topline=true, bottomline=true,
+  leftline=true, rightline=true, backgroundcolor=white]
+    \inputminted[fontsize=\large, linenos,breaklines,
+breakanywhere,breakautoindent=true,
+breaksymbolleft=\raisebox{0.8ex}{
+\reflectbox{\carriagereturn}},
+breaksymbolindentleft=0pt,
+breaksymbolsepleft=0pt,
+breaksymbolright=\carriagereturn,
+breaksymbolindentright=0pt,
+breaksymbolsepright=0pt,]{#1}{#2}
+\end{mdframed}
+}%
+
+\newenvironment{Image}[3]{
+\begin{figure}[!htb]
+\centering
+\includegraphics[#1]{#2}
+\caption{#3}
+\end{figure}
+}
+
+\definecolor{DarkBlue}{RGB}{36, 100, 176}
+\definecolor{LightGray}{gray}{.94}
+\definecolor{DarkGray}{gray}{.172}
+\definecolor{Black}{RGB}{0,0,0}
+
